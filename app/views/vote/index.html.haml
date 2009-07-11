@@ -1,0 +1,6 @@
+= render :partial => 'shared/header_vote'
+.ninety
+  %table.full.recent-winners
+    %tr.row0
+      %th{:colspan => 3}= @question
+    = render :partial => 'response', :collection => @responses

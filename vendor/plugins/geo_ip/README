@@ -1,0 +1,16 @@
+= GeoIP
+
+Link to GeoIPCity Ruby gem.
+
+== Example
+
+<em>Initialization</em>
+
+<tt>GeoIP.database('location')</tt>
+
+<em>Fill visit</em>
+
+<tt>visit = GeoIP.location('127.0.0.1', visit)</tt>
+
+
+Copyright (c) 2009 Peter Lubell-Doughtie and the Trustees of Princeton University.  For additional license information see text file MIT-LICENSE.

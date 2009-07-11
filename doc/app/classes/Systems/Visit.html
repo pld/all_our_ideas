@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Systems::Visit</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Systems::Visit</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/systems/visit_rb.html">
+                lib/systems/visit.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000072">active_visit=</a>&nbsp;&nbsp;
+      <a href="#M000081">clear_prompt_for_question_visit</a>&nbsp;&nbsp;
+      <a href="#M000084">create_visit</a>&nbsp;&nbsp;
+      <a href="#M000077">current_visit</a>&nbsp;&nbsp;
+      <a href="#M000078">current_visit!</a>&nbsp;&nbsp;
+      <a href="#M000073">current_visit_id</a>&nbsp;&nbsp;
+      <a href="#M000074">current_visit_id!</a>&nbsp;&nbsp;
+      <a href="#M000075">current_visit_ip_country_code</a>&nbsp;&nbsp;
+      <a href="#M000076">exp_locale</a>&nbsp;&nbsp;
+      <a href="#M000082">fetch_prompt_for_question_visit</a>&nbsp;&nbsp;
+      <a href="#M000083">fetch_visit</a>&nbsp;&nbsp;
+      <a href="#M000079">fresh_visit?</a>&nbsp;&nbsp;
+      <a href="#M000085">ip_address</a>&nbsp;&nbsp;
+      <a href="#M000080">prompt_for_question_visit</a>&nbsp;&nbsp;
+      <a href="#M000086">user_agent</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000072" class="method-detail">
+        <a name="M000072"></a>
+
+        <div class="method-heading">
+          <a href="#M000072" class="method-signature">
+          <span class="method-name">active_visit=</span><span class="method-args">(visit)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000072-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000072-source">
+<pre>
+   <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 2</span>
+2:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">active_visit=</span>(<span class="ruby-identifier">visit</span>)
+3:     <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:visit_id</span>] = <span class="ruby-identifier">visit</span>.<span class="ruby-identifier">id</span>
+4:     <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:visit_ip_country_code</span>] = <span class="ruby-identifier">visit</span>.<span class="ruby-identifier">ip_country_code</span>
+5:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000081" class="method-detail">
+        <a name="M000081"></a>
+
+        <div class="method-heading">
+          <a href="#M000081" class="method-signature">
+          <span class="method-name">clear_prompt_for_question_visit</span><span class="method-args">(qid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000081-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000081-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 46</span>
+46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clear_prompt_for_question_visit</span>(<span class="ruby-identifier">qid</span>)
+47:     <span class="ruby-identifier">visit</span> = <span class="ruby-identifier">current_visit</span>
+48:     <span class="ruby-identifier">qv</span> = <span class="ruby-operator">::</span><span class="ruby-constant">QuestionsVisit</span>.<span class="ruby-identifier">qv</span>(<span class="ruby-identifier">qid</span>, <span class="ruby-identifier">visit</span>.<span class="ruby-identifier">id</span>)
+49:     <span class="ruby-identifier">qv</span>.<span class="ruby-identifier">update_attribute</span>(<span class="ruby-identifier">:prompt_id_ext</span>, <span class="ruby-keyword kw">nil</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">qv</span>
+50:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000084" class="method-detail">
+        <a name="M000084"></a>
+
+        <div class="method-heading">
+          <a href="#M000084" class="method-signature">
+          <span class="method-name">create_visit</span><span class="method-args">(locale = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000084-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000084-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 84</span>
+84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_visit</span>(<span class="ruby-identifier">locale</span> = <span class="ruby-keyword kw">false</span>)
+85:     <span class="ruby-identifier">ip</span> = <span class="ruby-identifier">ip_address</span>
+86:     <span class="ruby-identifier">visit</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Visit</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+87:       <span class="ruby-identifier">v</span>.<span class="ruby-identifier">locale</span> = <span class="ruby-identifier">locale</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">locale</span>
+88:       <span class="ruby-identifier">v</span>.<span class="ruby-identifier">ip_address</span> = <span class="ruby-identifier">ip</span>
+89:       <span class="ruby-identifier">v</span>.<span class="ruby-identifier">host</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_HOST'</span>]
+90:       <span class="ruby-identifier">v</span>.<span class="ruby-identifier">user_agent</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_USER_AGENT'</span>]
+91:       <span class="ruby-identifier">v</span>.<span class="ruby-identifier">referrer</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_REFERER'</span>]
+92:       <span class="ruby-identifier">v</span>.<span class="ruby-identifier">request_uri</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'REQUEST_URI'</span>]
+93:     <span class="ruby-keyword kw">end</span>
+94:     <span class="ruby-identifier">visit</span> = <span class="ruby-constant">GeoIP</span>.<span class="ruby-identifier">location</span>(<span class="ruby-identifier">ip</span>, <span class="ruby-identifier">visit</span>)
+95:     <span class="ruby-identifier">visit</span>.<span class="ruby-identifier">save!</span>
+96:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">active_visit</span> = <span class="ruby-identifier">visit</span>
+97:     <span class="ruby-identifier">visit</span>
+98:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000077" class="method-detail">
+        <a name="M000077"></a>
+
+        <div class="method-heading">
+          <a href="#M000077" class="method-signature">
+          <span class="method-name">current_visit</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000077-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000077-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 23</span>
+23:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">current_visit</span>
+24:     <span class="ruby-identifier">current_visit_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">::</span><span class="ruby-constant">Visit</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_visit_id</span>)
+25:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000078" class="method-detail">
+        <a name="M000078"></a>
+
+        <div class="method-heading">
+          <a href="#M000078" class="method-signature">
+          <span class="method-name">current_visit!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000078-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000078-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 27</span>
+27:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">current_visit!</span>
+28:     (<span class="ruby-identifier">current_visit_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">::</span><span class="ruby-constant">Visit</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_visit_id</span>)) <span class="ruby-operator">||</span> <span class="ruby-identifier">create_visit</span>
+29:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000073" class="method-detail">
+        <a name="M000073"></a>
+
+        <div class="method-heading">
+          <a href="#M000073" class="method-signature">
+          <span class="method-name">current_visit_id</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000073-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000073-source">
+<pre>
+   <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 7</span>
+7:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">current_visit_id</span>
+8:     <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:visit_id</span>]
+9:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000074" class="method-detail">
+        <a name="M000074"></a>
+
+        <div class="method-heading">
+          <a href="#M000074" class="method-signature">
+          <span class="method-name">current_visit_id!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000074-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000074-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 11</span>
+11:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">current_visit_id!</span>
+12:     <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:visit_id</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">create_visit</span>.<span class="ruby-identifier">id</span>
+13:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000075" class="method-detail">
+        <a name="M000075"></a>
+
+        <div class="method-heading">
+          <a href="#M000075" class="method-signature">
+          <span class="method-name">current_visit_ip_country_code</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000075-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000075-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 15</span>
+15:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">current_visit_ip_country_code</span>
+16:     <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:visit_ip_country_code</span>]
+17:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000076" class="method-detail">
+        <a name="M000076"></a>
+
+        <div class="method-heading">
+          <a href="#M000076" class="method-signature">
+          <span class="method-name">exp_locale</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000076-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000076-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 19</span>
+19:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exp_locale</span>
+20:     <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:exp_locale</span>]
+21:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000082" class="method-detail">
+        <a name="M000082"></a>
+
+        <div class="method-heading">
+          <a href="#M000082" class="method-signature">
+          <span class="method-name">fetch_prompt_for_question_visit</span><span class="method-args">(qid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000082-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000082-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 52</span>
+52:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch_prompt_for_question_visit</span>(<span class="ruby-identifier">qid</span>)
+53:     <span class="ruby-identifier">visit</span> = <span class="ruby-identifier">current_visit!</span>
+54:     <span class="ruby-identifier">set_pairwise_from_question_id</span>(<span class="ruby-identifier">qid</span>)
+55:     <span class="ruby-identifier">voter_id_ext</span> = <span class="ruby-constant">Pairwise</span>.<span class="ruby-identifier">voter</span>(<span class="ruby-identifier">:ip_address</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ip_address</span>).<span class="ruby-identifier">first</span>
+56:     <span class="ruby-identifier">qv</span> = <span class="ruby-operator">::</span><span class="ruby-constant">QuestionsVisit</span>.<span class="ruby-identifier">qv</span>(<span class="ruby-identifier">qid</span>, <span class="ruby-identifier">visit</span>.<span class="ruby-identifier">id</span>) <span class="ruby-operator">||</span> <span class="ruby-operator">::</span><span class="ruby-constant">QuestionsVisit</span>.<span class="ruby-identifier">create!</span>(
+57:       <span class="ruby-identifier">:question_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">qid</span>,
+58:       <span class="ruby-identifier">:visit_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">visit</span>.<span class="ruby-identifier">id</span>,
+59:       <span class="ruby-identifier">:voter_id_ext</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">voter_id_ext</span>
+60:     )
+61:     <span class="ruby-ivar">@prompt_id</span>, <span class="ruby-ivar">@item_ids</span>, <span class="ruby-ivar">@item_data</span> = <span class="ruby-constant">Pairwise</span>.<span class="ruby-identifier">prompt</span>(<span class="ruby-identifier">qid</span>, <span class="ruby-identifier">qv</span>.<span class="ruby-identifier">voter_id_ext</span>, <span class="ruby-value">1</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value">2</span>, <span class="ruby-keyword kw">true</span>)
+62:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@prompt_id</span>.<span class="ruby-identifier">nil?</span>
+63:     <span class="ruby-ivar">@prompt_id</span> = <span class="ruby-ivar">@prompt_id</span>.<span class="ruby-identifier">first</span>
+64:     <span class="ruby-identifier">qv</span>.<span class="ruby-identifier">update_attribute</span>(<span class="ruby-identifier">:prompt_id_ext</span>, <span class="ruby-ivar">@prompt_id</span>)
+65:     <span class="ruby-ivar">@item_ids</span> = <span class="ruby-ivar">@item_ids</span>.<span class="ruby-identifier">first</span>
+66:     <span class="ruby-ivar">@item_data</span> = <span class="ruby-ivar">@item_data</span>.<span class="ruby-identifier">first</span>
+67:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000083" class="method-detail">
+        <a name="M000083"></a>
+
+        <div class="method-heading">
+          <a href="#M000083" class="method-signature">
+          <span class="method-name">fetch_visit</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000083-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000083-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 69</span>
+69:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch_visit</span>
+70:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_visit</span>
+71:       <span class="ruby-identifier">visit</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Visit</span>.<span class="ruby-identifier">first</span>(<span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> {
+72:         <span class="ruby-identifier">:ip_address</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ip_address</span>,
+73:         <span class="ruby-identifier">:user_agent</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_agent</span>,
+74:         <span class="ruby-identifier">:active</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+75:       })
+76:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">visit</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">fresh_visit?</span>(<span class="ruby-identifier">visit</span>)
+77:         <span class="ruby-identifier">visit</span>.<span class="ruby-identifier">update_attribute</span>(<span class="ruby-identifier">:active</span>, <span class="ruby-keyword kw">false</span>)
+78:         <span class="ruby-identifier">visit</span> = <span class="ruby-keyword kw">nil</span>
+79:       <span class="ruby-keyword kw">end</span>
+80:       <span class="ruby-identifier">visit</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">active_visit</span> = <span class="ruby-identifier">visit</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">create_visit</span>
+81:     <span class="ruby-keyword kw">end</span>
+82:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000079" class="method-detail">
+        <a name="M000079"></a>
+
+        <div class="method-heading">
+          <a href="#M000079" class="method-signature">
+          <span class="method-name">fresh_visit?</span><span class="method-args">(visit = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+time out visit if updated_at + const &gt; now
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000079-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000079-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 32</span>
+32:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fresh_visit?</span>(<span class="ruby-identifier">visit</span> = <span class="ruby-keyword kw">nil</span>)
+33:     <span class="ruby-identifier">visit</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">current_visit</span>
+34:     <span class="ruby-identifier">visit</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">visit</span>.<span class="ruby-identifier">updated_at</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">VISIT_STALE_AFTER</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+35:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000085" class="method-detail">
+        <a name="M000085"></a>
+
+        <div class="method-heading">
+          <a href="#M000085" class="method-signature">
+          <span class="method-name">ip_address</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000085-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000085-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 100</span>
+100:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ip_address</span>
+101:     <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_X_REAL_IP'</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'REMOTE_ADDR'</span>]
+102:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000080" class="method-detail">
+        <a name="M000080"></a>
+
+        <div class="method-heading">
+          <a href="#M000080" class="method-signature">
+          <span class="method-name">prompt_for_question_visit</span><span class="method-args">(qid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000080-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000080-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 37</span>
+37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prompt_for_question_visit</span>(<span class="ruby-identifier">qid</span>)
+38:     <span class="ruby-identifier">visit</span> = <span class="ruby-identifier">current_visit!</span>
+39:     <span class="ruby-identifier">qv</span> = <span class="ruby-operator">::</span><span class="ruby-constant">QuestionsVisit</span>.<span class="ruby-identifier">qv</span>(<span class="ruby-identifier">qid</span>, <span class="ruby-identifier">visit</span>.<span class="ruby-identifier">id</span>)
+40:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">qv</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@prompt_id</span> = <span class="ruby-identifier">qv</span>.<span class="ruby-identifier">prompt_id_ext</span>
+41:       <span class="ruby-ivar">@item_ids</span> = <span class="ruby-constant">Pairwise</span>.<span class="ruby-identifier">get_prompt</span>(<span class="ruby-ivar">@prompt_id</span>).<span class="ruby-identifier">last</span>
+42:       <span class="ruby-ivar">@item_data</span> = <span class="ruby-ivar">@item_ids</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span> <span class="ruby-constant">Pairwise</span>.<span class="ruby-identifier">get_item</span>(<span class="ruby-identifier">id</span>)[<span class="ruby-value">1</span>] }
+43:     <span class="ruby-keyword kw">end</span>
+44:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000086" class="method-detail">
+        <a name="M000086"></a>
+
+        <div class="method-heading">
+          <a href="#M000086" class="method-signature">
+          <span class="method-name">user_agent</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000086-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000086-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/systems/visit.rb, line 104</span>
+104:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">user_agent</span>
+105:     <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_USER_AGENT'</span>]
+106:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

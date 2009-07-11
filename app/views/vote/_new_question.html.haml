@@ -1,0 +1,8 @@
+%span.large-text
+  = t('questions.new.success_flash')
+  %br
+  = t('questions.new.success_flash2')
+  - url = @controller.named_url_for_question(@question_internal)
+  = link_to(url, url)
+  = t('questions.new.success_flash3')
+%span.close= link_to_function('close', "$('#notice').remove()")

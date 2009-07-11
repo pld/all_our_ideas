@@ -1,0 +1,12 @@
+%p
+  = t('feedback.someone_has_sent_feedback_on')
+  %strong= @question
+
+%p
+  == #{t('user.email')}:
+  = @email
+%p
+  == #{t('feedback.submitted_feedback')}:
+  = @feedback
+%p
+  == #{t('common.salutation')}, #{link_to('All Our Ideas', root_path(:only_path => false, :host => @host))}

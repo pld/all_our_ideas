@@ -1,0 +1,29 @@
+%h1= t('questions.new.header')
+%h2
+  = t('user.new.exp')
+  = link_to(t('user.new.see_an'), @url1, :method => :post)
+  = t('user.new.exp2')
+-form_for :user, :url => new_user_path do |f|
+  %p= f.error_messages
+  %table.left.signup
+    %tr
+      %td= t('user.email')
+      %td= f.text_field 'email'
+    %tr
+      %td= t('user.password')
+      %td= f.password_field 'password'
+    %tr
+      %td= t('user.password_confirmation')
+      %td= f.password_field 'password_confirmation'
+    %tr
+      %td
+      %td== #{submit_tag(t('form.signup'), :class => 'form-btn')} #{t('user.new.or_if')} #{link_to(t('user.login').downcase, login_path)}.
+    %tr
+      %td
+      %td
+        = t('user.new.no_spam')
+        = link_to(t('common.about'), about_path)
+        All Our Ideas
+        = t('common.and')
+        = t('common.our')
+        == #{link_to(t('nav.privacy_policy'), privacy_path)}.

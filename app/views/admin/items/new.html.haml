@@ -1,0 +1,12 @@
+%h3= t('items.new_items')
+
+-form_tag admin_items_path do
+  %p= t('items.add_item_instructions')
+  %p= text_area_tag 'item', nil, :rows => 3, :cols => 50
+  %p
+    = t('items.add_to_question')
+    = question_add_to_select
+  %p= submit_tag t('form.create')
+
+%p= link_to t('questions.list_questions'), questions_path
+%p= link_to t('items.list_items'), admin_items_path

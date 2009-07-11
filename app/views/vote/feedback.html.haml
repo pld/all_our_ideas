@@ -1,0 +1,17 @@
+= render :partial => 'shared/header_vote'
+.ninety
+  %table.full.item
+    %tr.row0
+      %th
+        = @question
+    %tr
+      %td
+        %h2= t('feedback.explain')
+        -form_tag feedback_vote_path do
+          %h4
+            = t('feedback.your_email')
+            = text_field_tag 'email', nil, :size => 45
+          %h4= t('feedback.your_comment')
+          = text_area_tag 'feedback', nil, :rows => 8, :cols => 64
+          = hidden_field_tag 'question_id', @question_id
+          %p= submit_tag t('form.submit'), :class => 'form-btn'

@@ -1,0 +1,36 @@
+= render :partial => 'shared/header_vote'
+.ninety
+  %table.full
+    %tr.row0
+      %th
+        = @question
+        /== (#{@votes_count} #{t('common.votes_on')} #{@items_count} #{t('common.items')})
+      %th.score= @header_text + link_to('[?]', score_items_path(:question_id => @question_id), :popup => ['status=0,location=0', 'height=200,width=500'])
+      %th &nbsp;
+    -alt=false
+    -for id, item, active, rank, wins, losses, added, ratings, skips, score in @items
+      %tr{:class => "row#{(alt = !alt) ? 1 : 2}"}
+        %td.title= link_to item, item_path(id, :question_id => @question_id)
+        %td.votes= @items_newest ? added[0, added.length - 6] : score.to_i
+        -#%td= rank
+        -#%td= added
+        %td
+          .bar-chart
+            %div{:style => "width:#{score}%"}
+    -unless @items_all || @items_newest
+      %tr.row1
+        %td{:colspan => 3}
+          %strong= link_to(t('nav.see_all_ideas'), quick_link('items/all', items_path(:question_id => @question_id)))
+    %tr.row0.thin
+      %td{:colspan => 3}
+  %br
+  -unless @items_newest
+    %ul
+      %li
+        %h2= link_to(t('nav.recent_winners'), quick_link('vote', vote_index_path(:question_id => @question_id)))
+      %li
+        %h2= link_to(t('nav.newest_ideas'), quick_link('items/newest', items_path(:question_id => @question_id)))
+      %li
+        %h2= link_to(t('nav.search_for_an_idea'), quick_link('items/search', search_items_path(:question_id => @question_id)))
+      %li
+        %h2= link_to(t('nav.map_of_voters'), quick_link('vote/map', map_vote_path(:question_id => @question_id)))

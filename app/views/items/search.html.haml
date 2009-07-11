@@ -1,0 +1,26 @@
+= render :partial => 'shared/header_vote'
+.ninety
+  %table.full
+    %tr.row0
+      %th
+        = @question
+    %tr
+      %td
+        -form_tag search_items_path do
+          %p
+            = hidden_field_tag 'question_id', @question_id
+            = t('items.search_for_an_idea')
+            = text_field_tag 'query', @query, :rows => 2, :cols => 50
+            = submit_tag(t('form.search'), :class => 'form-btn')
+  -if @items
+    %table.full
+      %tr
+        %th.row0== #{t('items.search_results_for')}: "#{@query}"
+      -if @items.empty?
+        %tr.row1
+          %td= t('items.no_items_match')
+      -else
+        -alt=false
+        -for id, item in @items
+          %tr{:class => "row#{(alt = !alt) ? 1 : 2}"}
+            %td= link_to item, item_path(id, :question_id => @question_id)

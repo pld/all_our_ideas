@@ -1,0 +1,17 @@
+development:
+  adapter: mysql
+  host: localhost
+  username: 
+  password: 
+  database: 
+  encoding: utf8
+  collation: utf8_unicode_ci
+
+test:
+  adapter: mysql
+  host: localhost
+  username: 
+  password: 
+  database: 
+  encoding: utf8
+  collation: utf8_unicode_ci

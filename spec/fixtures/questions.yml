@@ -1,0 +1,35 @@
+one:
+  id: 1
+  user_id: 1
+  pairwise_id: 1
+  active: true
+two:
+  id: 2
+  user_id: 1
+  pairwise_id: 2
+  active: false
+  name: two
+three:
+  id: 3
+  user_id: 2
+  pairwise_id: 3
+  active: true
+  name: nameq3
+four:
+  id: 4
+  user_id: 2
+  pairwise_id: 4
+  active: true
+  name: nameq4
+five:
+  id: 5
+  user_id: 2
+  pairwise_id: 5
+  active: true
+  name: nameq5
+nine:
+  id: 9
+  user_id: 2
+  pairwise_id: 9
+  active: true
+  name: nameq9

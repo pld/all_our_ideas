@@ -1,0 +1,8 @@
+= render :partial => 'shared/header_vote'
+.ninety
+  %table.full.item
+    %tr.row0
+      %th
+        = @question
+    %tr
+      %td= render :partial => 'shared/vote_map'

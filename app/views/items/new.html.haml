@@ -1,0 +1,5 @@
+= render :partial => 'shared/header_vote'
+.ninety
+  %h2= @question
+  %p= t('vote.add_a_suggestion')
+  = render :partial => 'items/form'

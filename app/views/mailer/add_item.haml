@@ -1,0 +1,16 @@
+%p
+  = t('items.email.someone_has_uploaded')
+  == "<strong>#{@item}</strong>"
+  = t('items.email.to_your_question')
+  %strong= link_to(@question, question_path(@question_id, :only_path => false, :host => @host))
+%p
+  = t('items.email.explain')
+%p
+  = t('items.email.if_you_want')
+%p
+  = link_to(@path, @path)
+%p
+  = t('items.email.explain2')
+%br
+%p
+  == #{t('common.salutation')}, #{link_to('All Our Ideas', root_path(:only_path => false, :host => @host))}

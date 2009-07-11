@@ -1,0 +1,7 @@
+%tr{:class => "row#{(@alt = !@alt) ? 1 : 2}"}
+  -for item_id, item in response.first
+    %td= link_to(item, item_path(item_id, :question_id => @question_id))
+  %td
+    %strong= response.first.empty? ? t('vote.skipped') : t('vote.over')
+  -for item_id, item in response.last
+    %td= link_to(item, item_path(item_id, :question_id => @question_id))
